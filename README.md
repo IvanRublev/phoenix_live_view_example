@@ -1,3 +1,7 @@
+# Bug demo
+
+If you press the "Show flashes" button on the index page several times sometimes flashes are presented other times not. 
+
 # Demo
 
 To start your Phoenix server:
