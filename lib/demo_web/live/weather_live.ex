@@ -8,6 +8,7 @@ defmodule DemoWeb.WeatherLive do
         <input name="location" placeholder="Location" value="<%= @location %>"/>
         <%= @weather %>
       </form>
+      <form phx-submit="show_flashes"><button type="submit">Show flashes</button></form>
     </div>
     """
   end
@@ -15,6 +16,15 @@ defmodule DemoWeb.WeatherLive do
   def mount(_params, _session, socket) do
     send(self(), {:put, "Austin"})
     {:ok, assign(socket, location: nil, weather: "...")}
+  end
+
+  def handle_event("show_flashes", _args, socket) do
+    {
+      :noreply,
+      socket
+      |> put_flash(:error, "Still have the error.")
+      |> redirect(to: "/")
+    }
   end
 
   def handle_event("set-location", %{"location" => location}, socket) do
